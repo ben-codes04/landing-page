@@ -43,8 +43,8 @@
       <!-- Free Card -->
       <div class="pricing-card free">
         <div>
-          <h2 class="plan-title">Free</h2>
-          <p class="plan-subtitle">Perfect for getting started</p>
+          <h2 class="plan-title">Free Starter</h2>
+          <p class="plan-subtitle">Essential tracking for simple routines</p>
           
           <div class="price-box">
             <span class="price">$0</span>
@@ -52,12 +52,12 @@
           </div>
 
           <ul class="feature-list">
-            <li><span class="check-icon">✓</span> 3 habits</li>
-            <li><span class="check-icon">✓</span> Cross platform sync</li>
-            <li class="disabled"><span class="cross-icon">✕</span> Advanced reminders</li>
-            <li class="disabled"><span class="cross-icon">✕</span> Off mode for breaks</li>
-            <li class="disabled"><span class="cross-icon">✕</span> Calendar integrations</li>
-            <li class="disabled"><span class="cross-icon">✕</span> Integrate with Apple Health</li>
+            <li><span class="check-icon">✓</span> Up to 3 active habits</li>
+            <li><span class="check-icon">✓</span> Basic streak counter</li>
+            <li><span class="check-icon">✓</span> Single device access</li>
+            <li class="disabled"><span class="cross-icon">✕</span> Custom habit schedules & intervals</li>
+            <li class="disabled"><span class="cross-icon">✕</span> Detailed analytics & export</li>
+            <li class="disabled"><span class="cross-icon">✕</span> Priority cloud backup</li>
           </ul>
         </div>
 
@@ -67,32 +67,32 @@
       <!-- Premium Card -->
       <div class="pricing-card premium">
         <div>
-          <h2 class="plan-title">Premium</h2>
-          <p class="plan-subtitle">Unlock your full potential</p>
+          <h2 class="plan-title">PulseTrack Pro</h2>
+          <p class="plan-subtitle">Complete control over your personal growth</p>
           
-          <div class="price-box">
+          <div class="price-box" id="priceContainer">
             <span class="price" id="premiumPrice">$49.99</span> 
             <span class="price-period" id="premiumPeriod">/ forever</span>
             <div class="billing-note" id="premiumNote">Billed once</div>
           </div>
 
           <ul class="feature-list">
-            <li><span class="check-icon">✓</span> Unlimited habits</li>
-            <li><span class="check-icon">✓</span> Cross platform sync</li>
-            <li><span class="check-icon">✓</span> Advanced reminders</li>
-            <li><span class="check-icon">✓</span> Off mode for breaks</li>
-            <li><span class="check-icon">✓</span> Calendar integrations</li>
-            <li><span class="check-icon">✓</span> Integrate with Apple Health</li>
+            <li><span class="check-icon">✓</span> Unlimited habit & goal tracking</li>
+            <li><span class="check-icon">✓</span> Real-time multi-device cloud sync</li>
+            <li><span class="check-icon">✓</span> Dynamic smart reminders & alerts</li>
+            <li><span class="check-icon">✓</span> Deep trend analytics & weekly digests</li>
+            <li><span class="check-icon">✓</span> Flexible interval & vacation mode</li>
+            <li><span class="check-icon">✓</span> Apple Health & Google Fit integration</li>
           </ul>
         </div>
 
-        <a href="#" class="btn-signup" style="text-align: center; display: block; text-decoration: none; background: #f59e0b; color: #000;">Upgrade to Premium</a>
+        <a href="#" class="btn-signup" style="text-align: center; display: block; text-decoration: none; background: #f59e0b; color: #000;">Upgrade to Pro</a>
       </div>
 
     </section>
   </section>
 
-  <!-- FAQ Section (Habitify Style) -->
+  <!-- FAQ Section -->
   <section class="faq-section">
     <h2 class="faq-title">Frequently Asked Questions</h2>
     <p class="faq-subtitle">Everything you need to know about PulseTrack Premium</p>
@@ -104,7 +104,7 @@
           <span class="faq-icon">+</span>
         </summary>
         <div class="faq-answer">
-          <p>Yes! Our Free plan includes up to 3 habits and basic cross-platform syncing, completely free forever with no credit card required.</p>
+          <p>Yes! Our Free plan lets you track up to 3 active habits with core features, free forever with no credit card required.</p>
         </div>
       </details>
 
@@ -114,7 +114,7 @@
           <span class="faq-icon">+</span>
         </summary>
         <div class="faq-answer">
-          <p>You get unlimited access to all current and future Premium features across iOS, Android, macOS, and Web with a single, one-time payment.</p>
+          <p>You unlock unlimited access to all current and upcoming Pro features across iOS, Android, and Web with a single payment.</p>
         </div>
       </details>
 
@@ -124,7 +124,7 @@
           <span class="faq-icon">+</span>
         </summary>
         <div class="faq-answer">
-          <p>Absolutely. If you are on an Annual subscription, you can upgrade to the Life-time plan at any time through your account settings.</p>
+          <p>Yes, you can easily upgrade to the Life-time plan directly from your account settings at any time.</p>
         </div>
       </details>
 
@@ -134,36 +134,47 @@
           <span class="faq-icon">+</span>
         </summary>
         <div class="faq-answer">
-          <p>We offer a 14-day money-back guarantee for all Premium purchases if you're not completely satisfied with PulseTrack.</p>
+          <p>We provide a 14-day full refund guarantee if PulseTrack isn't the right fit for your routine.</p>
         </div>
       </details>
     </div>
   </section>
 
-  <!-- Interactive Toggle Script -->
+  <!-- Interactive Toggle & Blink Script -->
   <script>
     const annualBtn = document.getElementById('annualBtn');
     const lifetimeBtn = document.getElementById('lifetimeBtn');
     const premiumPrice = document.getElementById('premiumPrice');
     const premiumPeriod = document.getElementById('premiumPeriod');
     const premiumNote = document.getElementById('premiumNote');
+    const priceContainer = document.getElementById('priceContainer');
+
+    function updatePrice(price, period, note) {
+      priceContainer.classList.add('price-blink');
+      
+      setTimeout(() => {
+        premiumPrice.textContent = price;
+        premiumPeriod.textContent = period;
+        premiumNote.textContent = note;
+      }, 150);
+
+      setTimeout(() => {
+        priceContainer.classList.remove('price-blink');
+      }, 300);
+    }
 
     annualBtn.addEventListener('click', () => {
+      if (annualBtn.classList.contains('active')) return;
       annualBtn.classList.add('active');
       lifetimeBtn.classList.remove('active');
-      
-      premiumPrice.textContent = '$1.75';
-      premiumPeriod.textContent = '/ month';
-      premiumNote.textContent = 'Billed annually at $20.99';
+      updatePrice('$1.75', '/ month', 'Billed annually at $20.99');
     });
 
     lifetimeBtn.addEventListener('click', () => {
+      if (lifetimeBtn.classList.contains('active')) return;
       lifetimeBtn.classList.add('active');
       annualBtn.classList.remove('active');
-      
-      premiumPrice.textContent = '$49.99';
-      premiumPeriod.textContent = '/ forever';
-      premiumNote.textContent = 'Billed once';
+      updatePrice('$49.99', '/ forever', 'Billed once');
     });
   </script>
 
